@@ -100,5 +100,7 @@
 - LikeCC 官网与实时报价配置器：https://likecc.app
 - 本地直连 vs 远程独享 Mac mini 7 维对照表：https://likecc.app/guides/remote-mac-mini-claude-code
 - 个人 Max / Ultra 与小团队 Claude Team 选型算账表：https://likecc.app/guides/claude-team-vs-max-ultra
+- 海外原生家宽 Mac mini 平台比价与 M4 16GB 实测边界：https://likecc.app/guides/mac-mini-m4-claude-code-pricing
+- 无海外卡使用 Claude Code：API 中转拼车 vs 虚拟卡 vs 独享 Mac 订阅协助：https://likecc.app/guides/claude-max-subscription-vs-api-relay
 - 完整服务与售后退款细则：https://likecc.app/service-terms
 - 远程 Mac 使用须知与红线清单：https://likecc.app/usage-notice
