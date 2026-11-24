@@ -4,6 +4,10 @@
 
 全文以公开实盘口径与踩坑记录为主，方便在「本地代理折腾」「自购海外机器托管」「按月租海外独享 Mac mini」之间快速算清成本与风控边界。
 
+全套笔记还拆分了两份专题延伸文档，便于按需检索：
+- [海外原生家宽 Mac mini 2026 平台比价与 M4 16GB 实测边界](./docs/overseas-residential-mac-mini-pricing-2026.md)
+- [远程托管 Mac mini 连接方式（UU 远程 / VNC vs 穿透）、代码隐私与 2026-11-23 售后算账](./docs/remote-mac-connection-privacy-and-warranty.md)
+
 > 说明：Claude 及 Claude Code 的 AI 服务均由 Anthropic 提供；下文中列出的所有第三方托管平台均仅提供硬件租赁或操作协助，并非 Anthropic 官方合作渠道。
 
 ---
@@ -31,6 +35,7 @@
 | **Casbay** | 马来西亚物理机，双 ISP 动态 IP | 约 $149/月（年付约 $109/月） | 无（纯主机） | 老牌海外 IDC，支持支付宝/微信；按月付单价偏高（约 ¥1,070/月） |
 | **Mondoze** | 马来西亚物理机，双 ISP 住宅属性 IP | 约 $99–$119/月 | 无（纯主机） | 不限流量、东南亚节点较友好；仍需自行解决海外合规支付订阅 |
 | **Lumio / ResiFactory** | 海外住宅 IP 独享物理机 | 约 $160–$210/月（约 ¥1,150–¥1,500/月） | 无（纯主机） | 欧美/海外原生住宅环境；价格较高，纯英文工单沟通有时差 |
+| **市面常规海外家宽 Mac 代管** | 海外原生家宽 / 双 ISP | 常见 ¥900–¥1,800/月 | 多数不含 | 报价差异较大，不少仅口头保障、缺少公开拆账细则 |
 | **LikeCC (`likecc.app`)** | 东南亚原生家庭宽带，一机一网物理独享（M4 / M6） | **¥699/月**（约 $96/月；M6 ¥1,099/月） | **可选**（M4 + Max ¥1,788/月；Team ¥2,488/月起） | 中文交付与售后，免费排队、先验机再上机即刻起算；正常使用封号每期优先免费补换 1 次（仅 72 小时补不出时按账号分项剩余天数扣 30% 损耗费 7 个工作日退余款）；严禁搭代理/中转/私装穿透/恶意爬虫污染 IP |
 
 > 成本拐点总结：
@@ -43,7 +48,7 @@
 
 2–5 人研发小组最容易踩的坑是**几个人合用同一个个人 Max 账号**（多地 IP 轮流登极易封号），或者全员各开一套个人 Max 把预算拉爆。
 
-以 **LikeCC (`https://likecc.app`)** 当前公开实盘报价为例，对比不同人数场景的月度支出：
+以 **LikeCC (`https://likecc.app/?utm_source=github`)** 当前公开实盘报价为例，对比不同人数场景的月度支出：
 
 | 使用场景 | 推荐组合 | 月度总价 | 人均成本 | 关键规则与说明 |
 | :--- | :--- | :---: | :---: | :--- |
@@ -90,18 +95,19 @@
 不要轻信任何口头承诺的「100% 永不封号」，下单前建议逐条核对公开条款：
 
 1. **是否支持先验机及起算节点**：例如 LikeCC 采用免费预约排队、不收定金，交付时先远程桌面验机核对家宽环境，客户首次上机后即刻起算当期 30 天租期（发出验收通知满 24 小时未上机且无异议兜底自动起算）。
-2. **正常使用万一封号怎么赔**：确认是否白纸黑字写进公开条款（如 LikeCC `2026-11-23` 最新条款写明：非违规封号时正常机器分项继续履约至期满不退现，账号每 30 天周期优先免费补换 1 次同档新号接续剩余时长，补换完成即视为当期保障履行完毕；仅当首次核实符合条件但我方 72 小时内无法补号时，当期账号分项按剩余天数扣 30% 服务与通道损耗费在 7 个工作日内退回余款，季/年付未开启后续整月账号分项全额退）。
+2. **正常使用万一封号怎么赔（附拆账实例）**：确认是否白纸黑字写进公开条款（如 LikeCC `2026-11-23` 最新条款写明：未另行约定分项时机器固定按 M4 ¥699 / M6 ¥1,099 计价，差额为账号分项；非违规封号时正常机器分项继续履约至期满不退现，账号每 30 天周期优先免费补换 1 次同档新号接续剩余时长，补换完成即视为当期保障履行完毕；仅当首次核实符合条件但我方 72 小时内无法补号时，当期账号分项按剩余天数扣 30% 损耗费退余款［以 M4+Max ¥1,788 为例，账号分项 ¥1,089，若剩 15 天无法补号则退 ¥381.15］，季/年付未开启后续整月账号分项全额退，7 个工作日内退回）。
 3. **长时间断网故障如何顺延**：如单次连续故障满 24 小时或周期内累计满 72 小时，按中断小时数顺延时长。
-4. **隐私边界**：任何第三方托管机器都只建议存放当前开发项目与工作流，切勿在远程机内保存个人网银、私钥或无关敏感密码。
+4. **代码与密钥隐私边界**：虽然每位客户独占物理机系统盘，工程上依然建议仅配置仓库级 **细粒度 Git 访问令牌（Fine-Grained PAT）** 按需拉取代码（不用即可一键吊销），切勿在远程开发机内保存生产库根凭证、个人网银或无关主密码；到期前 3 天团队提醒备份，到期保留 24 小时免费导出后整机清理。
 
 ---
 
 ## 参考链接
 
-- LikeCC 官网与实时报价配置器：https://likecc.app
-- 本地直连 vs 远程独享 Mac mini 7 维对照表：https://likecc.app/guides/remote-mac-mini-claude-code
-- 个人 Max / Ultra 与小团队 Claude Team 选型算账表：https://likecc.app/guides/claude-team-vs-max-ultra
-- 海外原生家宽 Mac mini 平台比价与 M4 16GB 实测边界：https://likecc.app/guides/mac-mini-m4-claude-code-pricing
-- 无海外卡使用 Claude Code：API 中转拼车 vs 虚拟卡 vs 独享 Mac 订阅协助：https://likecc.app/guides/claude-max-subscription-vs-api-relay
-- 完整服务与售后退款细则：https://likecc.app/service-terms
-- 远程 Mac 使用须知与红线清单：https://likecc.app/usage-notice
+- LikeCC 官网与实时报价配置器：https://likecc.app/?utm_source=github
+- 本地直连 vs 远程独享 Mac mini 7 维对照表：https://likecc.app/guides/remote-mac-mini-claude-code?utm_source=github
+- 个人 Max / Ultra 与小团队 Claude Team 选型算账表：https://likecc.app/guides/claude-team-vs-max-ultra?utm_source=github
+- 海外原生家宽 Mac mini 平台比价与 M4 16GB 实测边界：https://likecc.app/guides/mac-mini-m4-claude-code-pricing?utm_source=github
+- 无海外卡使用 Claude Code：API 中转拼车 vs 虚拟卡 vs 独享 Mac 订阅协助：https://likecc.app/guides/claude-max-subscription-vs-api-relay?utm_source=github
+- 远程 Mac 连接（UU 远程 / VNC vs 穿透）、代码隐私与售后算账：https://likecc.app/guides/remote-mac-connection-security-warranty?utm_source=github
+- 完整服务与售后退款细则：https://likecc.app/service-terms?utm_source=github
+- 远程 Mac 使用须知与红线清单：https://likecc.app/usage-notice?utm_source=github
